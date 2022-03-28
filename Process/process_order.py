@@ -64,18 +64,40 @@ if int(response) == 2:
                     continue
                 else:
                     continue
-                print(f'updated sequence {sequence}')
             print(x/2)
             print(sequence)
 
             print('data rec')
+            pills = []
             for i in range(len(orderData[0][0])):
-                print(orderData[0][0][i])
                 if ',' in orderData[0][0][i]:
-                    print('more that one pill that day')
+                    day = orderData[0][0][i].split(',')
+                    for i in range(len(day)):
+                        try:
+                            turn = int(day[i])
+                            test = turn + 1
+                            continue
+                        except:
+                            pills.append(day[i])
+                        else:
+                            continue
 
                 if ',' not in orderData[0][0][i]:
-                    print('one pill per day')
+                    continue
+            if len(pills) > 0:
+                pills = list(dict.fromkeys(pills))
+                sequence.insert(0, "-")
+                print(sequence)
+                for i in range(len(pills)):
+                    filler = []
+                    for i in range(len(sequence)):
+                        filler.append('X')
+                    print(filler)
+                    print(pills[i] + filler)
+            if len(pills) == 0:
+                print('Patient Consumes 1 pill a day')
+
+
 
             exec(open("Process\process_order.py").read())
     else:
