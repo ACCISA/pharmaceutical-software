@@ -84,22 +84,54 @@ if int(response) == 2:
 
                 if ',' not in orderData[0][0][i]:
                     continue
+            print(f'pills are {pills}')
             if len(pills) > 0:
                 pills = list(dict.fromkeys(pills))
-                sequence.insert(0, "-")
+                sequence.insert(0, "----")
                 print(sequence)
                 for i in range(len(pills)):
                     filler = []
-                    for i in range(len(sequence)):
+                    filler.append(pills[i])
+                    for i in range(len(sequence) - 1):
                         filler.append('X')
                     print(filler)
-                    print(pills[i] + filler)
+                width = len(sequence)
+                length = len(pills)
+                print("==============================================")
+                print("-----------------Prototype XBD----------------")
+                print("----------------------------------------------")
+                print("------------------Oder Process----------------")
+                print("==============================================")
+                print(f"----length: {length}----width: {width}--------------")
+                print("==============================================")
+                print(f"--------------Inventory Status---------------")
+                print(f"---------------------------------------------")
+                for i in range(len(pills)):
+                    inventorySearch = storageDBF.find(str(pills[i]))
+                    invRow = inventorySearch.row
+                    quantity = storageDBF.acell(f'B{invRow}').value
+                    if int(quantity) == 0:
+                        location = storageDBF.acell(f'C{invRow}').value
+                        print("==============================================")
+                        print(f"Tray {pills[i]} is empty")
+                        print(f"Location: {location}")
+                        print("==============================================")
+                    print(f"---------------------{pills[i]}: {quantity}---------------------")
+                print("==============================================")
+
+
+
             if len(pills) == 0:
                 print('Patient Consumes 1 pill a day')
+                width = len(sequence)
+                length = 1
+                print("==============================================")
+                print("-----------------Prototype XBD----------------")
+                print("----------------------------------------------")
+                print("------------------Oder Process----------------")
+                print("==============================================")
+                print(f"----length: {length}----width: {width}----------------")
 
-
-
-            exec(open("Process\process_order.py").read())
     else:
         print('Invalid Input')
         exec(open("Process\process_order.py").read())
