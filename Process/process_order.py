@@ -67,6 +67,16 @@ if int(response) == 2:
                 print(f'updated sequence {sequence}')
             print(x/2)
             print(sequence)
+
+            print('data rec')
+            for i in range(len(orderData[0][0])):
+                print(orderData[0][0][i])
+                if ',' in orderData[0][0][i]:
+                    print('more that one pill that day')
+
+                if ',' not in orderData[0][0][i]:
+                    print('one pill per day')
+
             exec(open("Process\process_order.py").read())
     else:
         print('Invalid Input')
