@@ -53,7 +53,7 @@ if findPill != None:
         print("-------------------------")
         print("Quantity Updated")
         print("-------------------------")
-        exec(open("storage\storage_data.py").read())
+        exec(open("menu.py").read())
 
     if int(response2) == 2:
         while True:

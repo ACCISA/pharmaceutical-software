@@ -15,9 +15,9 @@ print("-------------------------")
 print("Insert Username...")
 print("-------------------------")
 username = input()
-findUser = userDBF.find(str(username))
-vine = 2
 
+
+findUser = userDBF.find(str(username))
 if findUser == None:
     print('User Not Found')
 
@@ -33,3 +33,5 @@ if findUser != None:
 
     if findPass != None:
         exec(open("menu.py").read())
+
+
