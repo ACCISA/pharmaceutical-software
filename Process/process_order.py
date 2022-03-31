@@ -1,6 +1,5 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-import validation
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 
@@ -12,6 +11,7 @@ storageDBF = client1.open('PharmaDB').get_worksheet(1)
 clientDBF = client1.open('PharmaDB').get_worksheet(3)
 orderDBF = client1.open('PharmaDB').get_worksheet(4)
 tempDBF = client1.open('PharmaDB').get_worksheet(5)
+validDBF = client1.open('PharmaDB').get_worksheet(6)
 
 def count(list):
     global listCount
@@ -35,6 +35,29 @@ def count(list):
                 continue
             except:
                 continue
+
+def validation_check(listPills):
+    global validationRow
+    for i in range(len(listPills)):
+        findPill = validDBF.find(str(listPills[i]))
+        if findPill == None:
+            global valid
+            valid = True
+            pass
+        if findPill != None:
+            findPillRow = findPill.row
+            validationRow = validDBF.row_values(findPillRow)
+            target = 0
+            for i in range(len(listPills)):
+                if target == 1:
+                    valid = False
+                    break
+                if listPills[i] in validationRow:
+                    target += 1
+                    continue
+                else:
+                    valid = True
+
 
 
 
@@ -238,6 +261,7 @@ if int(response) == 2:
                                         totalCount.append(lastUpdate)
                                         print(totalCount)
                                         tempDBF.append_row(totalCount)
+                                        print('added to temp 2')
                                         for i in range(len(pills)):
                                             findPill = storageDBF.find(pills[i])
                                             if findPill == None:
@@ -260,11 +284,13 @@ if int(response) == 2:
                                                         print(f'{pills[i]} Processed')
                                                         newQuanti = int(findPillQuant) - int(findPilliQuant)
                                                         storageDBF.update(f'B{findPillRow}', newQuanti)
-                                        validation.validation_check(pills)
+                                        validation_check(pills)
+
                                         if valid:
                                             print("==============================================")
                                             print("Order Processed")
                                             print("==============================================")
+
                                             tempDBF.clear()
                                             exec(open("Process\process_order.py").read())
                                         if not valid:
@@ -280,36 +306,51 @@ if int(response) == 2:
                                     print(totalCount)
                                     if i + 1 == len(pillsOnly) and permI != 0:
                                         print('this happend')
+                                        print(f'the count is {totalCount}')
                                         lastUpdate = int(totalCount[1]) - startingNumb
                                         totalCount.clear()
                                         totalCount.append(perm)
                                         totalCount.append(lastUpdate)
                                         print(totalCount)
-                                        tempDBF.append_row(totalCount)
+                                        print('added to temp 1')
                                         print(f'finished for {totalCount[permI]}')
                                         quantData = tempDBF.get_all_records()
                                         print(quantData)
                                         for i in range(len(pills)):
-                                            searchQuant = storageDBF.find(pills[i])
-                                            searchQuantRow = searchQuant.row
-                                            QuantSearch = storageDBF.acell(f'B{searchQuantRow}').value
-                                            location = storageDBF.acell(f'C{searchQuantRow}').value
-                                            if int(QuantSearch) <= 0:
-                                                print(f"Tray {pills[i]} is empty")
-                                                print(f"Location: {location}")
-                                            else:
-                                                for i in range(len(pills)):
+                                            validation_check(pills)
+
+                                            if valid:
+                                                tempDBF.append_row(totalCount)
+                                                print(f'the pills are here {pills}')
+                                                searchQuant = storageDBF.find(pills[i])
+                                                searchQuantRow = searchQuant.row
+                                                QuantSearch = storageDBF.acell(f'B{searchQuantRow}').value
+                                                location = storageDBF.acell(f'C{searchQuantRow}').value
+                                                if int(QuantSearch) <= 0:
+                                                    print(f"Tray {pills[i]} is empty")
+                                                    print(f"Location: {location}")
+                                                else:
+                                                    # for i in range(len(pills)):
+                                                    print(f'FOUND {pills[i]}')
                                                     searchTemp = tempDBF.find(str(pills[i]))
                                                     searchTempRow = searchTemp.row
                                                     quantTemp = tempDBF.acell(f'B{searchTempRow}').value
                                                     if int(QuantSearch) - int(quantTemp) <= 0:
                                                         print(f'Tray {pills[i]}, insufficient quantity')
                                                         print(f'location: {location}')
-                                                    elif int(QuantSearch) - int(quantTemp) > 0:
+                                                    else:
                                                         print('Order Processed')
                                                         newQuant = int(QuantSearch) - int(quantTemp)
-                                                        storageDBF.update(f'B{searchTemp}', str(newQuant))
+                                                        storageDBF.update(f'B{searchQuantRow}', str(newQuant))
                                                         tempDBF.clear()
+                                                continue
+                                            if not valid:
+                                                print("==============================================")
+                                                print("Validation Process Failed.")
+                                                print(f"Validation Error Detected {validationRow}")
+                                                print("==============================================")
+                                                break
+
                                         print("==============================================")
                                         exec(open("Process\process_order.py").read())
 
