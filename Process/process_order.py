@@ -1,6 +1,6 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-
+import validation
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 
@@ -260,11 +260,18 @@ if int(response) == 2:
                                                         print(f'{pills[i]} Processed')
                                                         newQuanti = int(findPillQuant) - int(findPilliQuant)
                                                         storageDBF.update(f'B{findPillRow}', newQuanti)
-                                        print("==============================================")
-                                        print("Order Processed")
-                                        print("==============================================")
-                                        tempDBF.clear()
-                                        exec(open("Process\process_order.py").read())
+                                        validation.validation_check(pills)
+                                        if valid:
+                                            print("==============================================")
+                                            print("Order Processed")
+                                            print("==============================================")
+                                            tempDBF.clear()
+                                            exec(open("Process\process_order.py").read())
+                                        if not valid:
+                                            print("==============================================")
+                                            print("Validation Process Failed.")
+                                            print(f"Validation Error Row {validationRow}")
+                                            print("==============================================")
 
                                     continue
                                 else:
