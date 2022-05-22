@@ -1,5 +1,11 @@
-This code will not work if downloaded and ran.
+This is the source code of a software programmed to help pharmacist manage the distribution of prescriptions
 
 To use this code:
 
 - Edit Excel Databases
+- Use python 3.9 environment 
+- Get your creds.json file from google sheet documentation https://docs.gspread.org/en/latest/
+
+
+This Source code might be subject to some changes over time
+
