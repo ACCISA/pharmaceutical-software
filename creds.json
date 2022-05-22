@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "court-discord",
+  "private_key_id": "97a63a1c2224306573b35292fa636b4953e80fd8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCoORI90YcbNU+A\nckX+32ZYhMJgoMPPqccT9d/AKMhVpQrFKQxxwp5QYaSPuGfnG8sg0lg0CU9h55fp\nrUbe6kCOsT6aK5o82e7QDX74SzDTTpj9CJ/Z6ufop4Mwmxd6G6+Dppa9mqmSNkNs\nSb5QdaEDup8zcFqB1Hk86GkFec1Z0Ezw02v/E9e9UkU4TBTTyjmsR7VjoLAY5DVF\nFBBCmbUsQ7r1OcK0eAFMz1MZNS3AUVChqDBrWtAGyGDdC3sw4wc8VlgtHWstO1b4\nLGgF1J+ecOcRCnKQJQJQkywZavQw2cFK45sTqOp1vuiFqYdOAQKjXTPYslSIlfjw\ndqxoNrrtAgMBAAECggEAG5zemyoZAMTT63QWfDskXBRSqbTJ33zxUhvyYeLv22sP\nZQSTZ9r3zJ7yeard10gvJBCS7Nu4XYw72d4Y+389II8EhR7yHtnxAtKsTEpfVdgZ\ncbNoNceC0KQqeyCCDoeb3ELMjIvmGLtyfsRuClv8lZWdCz7+hEAhtHc7wevX4s1z\neogHOx/mTcQkiHSTM6nhYcWD6plPfnk1BjhDYM2nQVslzxiX0a5BOU1tV1bbHTgo\nOW2pSwG5cw+S37hOfKjEVRU9UuCUlFdjfJF5IcsO6iDB4qyvxIB28FWd2mjWCGZa\nhpupDdH1lBUri6XUfIB+U2Rv1SHt/TMPJwSe3rpN8QKBgQDflOtpI5KSPuRDDuBh\naX9tv1L9KEmWg3mbdASGbBF6U735neuuDo4u0evmVLa4HYCx2/szqU2ep04oGT/S\nFNV45asGzHztdLisockZhLdeEYNTNvXakyK/7ph+rOjAYLJHBCMYOKE+PvuvZFPl\nfdAp9qjxZRvNe3m83t0zDpqHqQKBgQDAnU0er09n45Tl6XmC7y+/87FqkQFbGlf3\nsu0pK+2d+TLUVmEVuW/1TlwlOfP40S13hz8Aqy6Oy2jmGQV+wEjJrkoSfXvF1ymD\nQFczcL/DYmj0YCQfc0Ok2Vt3/H1usawpWrm2kVRKau6vnBKCKrFO/23r0MvFbtIx\nVZUAtoXTpQKBgQDS4yyJJzyBJUE43zdVqqS/Z89najC+/5QcxPnfsN9resGeSQ6c\nRq5mCytvPkh6sZlKKixvNio4k6ZsvCQui+gu+LKw3wCXGZl3e8KrhztOR0aPny+W\n02Hbl7nPAlkn3A1MXuKbXg75H39WmFNqC5nlevsvdicbUnQpai1Kk2O+wQKBgFdp\ni8w3J0Qwhixo7po7TmJAh+2i7QiZRf7FlteudeHRa/3tTZX8WBDthOfoCw6Kb6Xl\nHPSCu1hWe76g8Ft7jAzrKfaGOBuq783+7xQLQRu8l4D/+KTFPJedhONJFOudelIy\nOEHgZm53ZOcRX1zvXxRI22u/kBqDlqSJAFwYeVd5AoGBANp8MWEJq2MK1i8uWb4H\n/PcWJd0zYKTNU27h68crvbeQO199DlovuxwOCVjyrFvPsW8loh49MIRfEaIF+p/l\nS5JBHXpuvfd7/xOhP491Tt/Cj5SZonX2JjDCUzX/MKa88/uzqwGY7TahNScXpN+Y\nLgNa7l4GzwVk351gkTD83ala\n-----END PRIVATE KEY-----\n",
+  "client_email": "court-discord@court-discord.iam.gserviceaccount.com",
+  "client_id": "110237427911888155477",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/court-discord%40court-discord.iam.gserviceaccount.com"
+}
